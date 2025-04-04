@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="grid">
+                    <% if(products.length> 0) {%>
+                        <div class="grid" style="width: 70%;">
+                            <ul class="main-header__item-list">
+                                <% products.forEach(p=> { %>
+                                    <li class="main-header__item-list--item">
+                                        <div class="main-header__item-list--div">
+                                            <p>
+                                                <%=p.title %>
+                                            </p>
+                                            <span class="btn main-header__item-list--span">
+                                                <form class="main-header__item--form" action="/cart" method="POST">
+                                                    <input type="hidden" id="productId" name="productId"
+                                                        value="<%= p.id%>">
+                                                    <input class="main-header__item--btn" type="submit" name="btnsubmit"
+                                                        aria-label="Reduce item quantity by one" value="-"></input>
+                                                    <input min="0" value="<%=p.qty%>" pattern="[0-9]" type="text"
+                                                        readonly></input>
+                                                    <input class="main-header__item--btn" type="submit" name="btnsubmit"
+                                                        aria-label="Increase item quantity by one" value="+"></input>
+                                                </form>
+                                            </span>
+
+                                        </div>
+                                        <form action="/cart-delete-item" method="POST">
+                                            <input type="hidden" name="productId" value="<%=p.id%>">
+                                            <br>
+                                            <button class="btn tooltip" style="width: 20%;" type="submit">
+                                                <img aria-label="Delete" style="width: 100%;" src="./assets/trash_icon.png" />
+                                                <span class="tooltiptext">Delete me</span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <%}) %>
+                            </ul>
+                        </div>
+                        <div class="divider" role="separator" aria-label="Divider"></div>
+                        <div class="main-header__item-list--item" style="width: 20%;max-height: 150px;">
+                            <form action="/orders" method="GET">
+                                <span class="main-header__span--Subtotal" >
+                                    <div>Subtotal</div>
+                                    <div>£<%=subtotal%></div>
+                                </span>
+                                <button type="submit" class="btn">Check out</button>
+                            </form>                        
+                        </div>
+                        <% } else {%>
+                            <h1>No Products in Cart!</h1>
+                            <% }%>
+                </div>
+            </main>
+            <%- include('../includes/end.ejs') %>

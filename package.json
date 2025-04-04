@@ -1,0 +1,29 @@
+{
+  "name": "first-nodejs",
+  "version": "1.0.0",
+  "description": "Complete node.js guide",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon app.js",
+    "start-server": "node app.js",
+    "debug": "node app.js"
+  },
+  "author": "Bhuvana",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "compression": "^1.8.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-handlebars": "3.0",
+    "helmet": "^8.1.0",
+    "mysql2": "^3.14.0",
+    "pug": "^3.0.3"
+  }
+}
